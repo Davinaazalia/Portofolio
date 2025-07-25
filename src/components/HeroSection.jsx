@@ -49,8 +49,8 @@ export const HeroSection = () => {
         <div className="absolute top-2/5 right-1/5 w-1.5 h-1.5 bg-secondary/35 rounded-full animate-ping" style={{animationDelay: '2.5s'}}></div>
       </div>
 
-      <div className="container max-w-5xl mx-auto text-center z-10 pt-16">
-        <div className="space-y-8">
+      <div className="container max-w-5xl mx-auto text-center z-10 pt-40 sm:pt-32">
+        <div className="space-y-8 mt-12 sm:mt-16">
           {/* Main Heading with Enhanced Animation */}
           <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
