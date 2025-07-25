@@ -7,6 +7,7 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
+import { GeminiChatbot } from "../components/GeminiChatbot";
 
 export const Home = () => {
   return (
@@ -29,6 +30,9 @@ export const Home = () => {
 
       {/* Footer */}
       <Footer />
+      
+      {/* Gemini AI Chatbot */}
+      <GeminiChatbot />
     </div>
   );
 };

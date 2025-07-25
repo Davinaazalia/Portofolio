@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Gemini API</title>
+</head>
+<body>
+    <h1>Test Gemini API</h1>
+    <button onclick="testAPI()">Test API</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const API_KEY = 'AIzaSyALvssZAEmdqPfCZnn6RbnU_rzB5huQsuE';
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                console.log('Testing Gemini API...');
+                resultDiv.innerHTML = 'Testing API...';
+                
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: 'Hello, please say hi back to me!'
+                            }]
+                        }]
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error response:', errorText);
+                    resultDiv.innerHTML = `Error: ${response.status} - ${errorText}`;
+                    return;
+                }
+
+                const data = await response.json();
+                console.log('Success response:', data);
+                
+                if (data.candidates && data.candidates[0]) {
+                    resultDiv.innerHTML = `Success: ${data.candidates[0].content.parts[0].text}`;
+                } else {
+                    resultDiv.innerHTML = `Unexpected response: ${JSON.stringify(data)}`;
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                resultDiv.innerHTML = `Network error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -16,7 +16,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -25,18 +25,33 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        "fixed w-full z-40 transition-all duration-500 ease-in-out",
+        isScrolled 
+          ? "py-3 bg-background/70 backdrop-blur-xl shadow-lg border-b border-white/10" 
+          : "py-6 bg-transparent"
       )}
     >
       <div className="container flex items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className={cn(
+            "text-xl font-bold flex items-center transition-all duration-300",
+            isScrolled ? "text-primary" : "text-foreground"
+          )}
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> DavinaTech </span>{" "}
-            Portfolio
+            <span className={cn(
+              "transition-all duration-300",
+              isScrolled ? "text-glow text-primary" : "text-glow text-foreground"
+            )}> 
+              DavinaTech 
+            </span>{" "}
+            <span className={cn(
+              "transition-all duration-300",
+              isScrolled ? "text-primary/80" : "text-foreground/80"
+            )}>
+              Portfolio
+            </span>
           </span>
         </a>
 
@@ -65,8 +80,8 @@ export const Navbar = () => {
 
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center",
+            "transition-all duration-500 md:hidden border-t border-white/10",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
